@@ -63,6 +63,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\DataContext.cs" />
+    <Compile Include="Migrations\201706041214464_InitialCreate.cs" />
+    <Compile Include="Migrations\201706041214464_InitialCreate.Designer.cs">
+      <DependentUpon>201706041214464_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706061721441_001.cs" />
+    <Compile Include="Migrations\201706061721441_001.Designer.cs">
+      <DependentUpon>201706061721441_001.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PedidoDao.cs" />
     <Compile Include="ProdutoDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,6 +106,14 @@
       <Project>{F2C8A222-F8D6-49F4-857A-23587023B9F5}</Project>
       <Name>Tp3-Azure.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201706041214464_InitialCreate.resx">
+      <DependentUpon>201706041214464_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706061721441_001.resx">
+      <DependentUpon>201706061721441_001.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,7 +6,7 @@ namespace Tp3_Azure.Data.Context
 {
     public class DataContext:DbContext
     {
-        public DataContext():base(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\workspace\TP2-Azure\Tp3-Azure.Data\DataBase\Tp3-Azure-DataBase.mdf;Integrated Security=True")
+        public DataContext():base(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\workspace\Azure\Tp3-Azure.Data\DataBase\Tp3-Azure-DataBase.mdf;Integrated Security=True")
         {
 
         }

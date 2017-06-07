@@ -186,12 +186,10 @@
     <None Include="Connected Services\ServiceReference1\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Connected Services\ServiceReference1\Tp3_Azure.Client.ServiceReference1.Produto.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <None Include="Connected Services\ServiceReference1\Tp3_Azure.Domain.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Properties\DataSources\Tp3_Azure.Domain.Produto.datasource" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

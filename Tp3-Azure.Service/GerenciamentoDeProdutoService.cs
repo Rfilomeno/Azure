@@ -5,30 +5,36 @@ using System.Text;
 using System.Threading.Tasks;
 using Tp3_Azure.Data;
 using Tp3_Azure.Domain;
+using Tp3_Azure.Service.Helper;
 
 namespace Tp3_Azure.Service
 {
     public class GerenciamentoDeProdutoService : IGerenciamentoDeProdutoService
     {
         ProdutoDao dao;
+        FilaHelper fila;
         public GerenciamentoDeProdutoService()
         {
             this.dao = new ProdutoDao();
+            this.fila = new FilaHelper();
         }
 
         public void Create(Produto p)
         {
-            dao.Add(p);
+            fila.AdicionarProduto(p);
+            
         }
 
         public void Delete(Guid produtoId)
         {
-            dao.Delete(produtoId);
+            fila.DeletarProduto(produtoId);
+            
         }
 
         public void Edit(Guid produtoId, Produto p)
         {
-            dao.Edit(produtoId, p);
+            fila.EditarProduto(p);
+           
         }
 
         public Produto Get(string nome)
@@ -39,6 +45,11 @@ namespace Tp3_Azure.Service
         public IList<Produto> GetAll()
         {
             return dao.GetAll();
+        }
+
+        public void ExecutarFila()
+        {
+            fila.Executar();
         }
     }
 }

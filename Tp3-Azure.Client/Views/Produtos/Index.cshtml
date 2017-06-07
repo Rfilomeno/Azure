@@ -49,3 +49,8 @@
 }
 
 </table>
+@if(Session["fila"].ToString() != "0")
+{
+    <p style="color: red">Exitem produtos a ser processados na fila!</p>
+}
+@Html.ActionLink("Executar Fila", "ExecutarFila")

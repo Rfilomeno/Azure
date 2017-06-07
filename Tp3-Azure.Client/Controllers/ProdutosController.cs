@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Tp3_Azure.Data.Context;
 using Tp3_Azure.Domain;
+using Tp3_Azure.Service.Helper;
 
 namespace Tp3_Azure.Client.Controllers
 {
@@ -19,7 +20,7 @@ namespace Tp3_Azure.Client.Controllers
         public ActionResult Index()
         {
             List<Produto> produtos = new List<Produto>();
-
+            FilaHelper fila = new FilaHelper();
             using (var proxy = new ServiceReference1.GerenciamentoDeProdutoServiceClient())
             {
                 foreach (var item in proxy.GetAll())
@@ -33,8 +34,18 @@ namespace Tp3_Azure.Client.Controllers
                         Quantidade = item.Quantidade
                     });
                 }
-
+                int? tamanho = fila.TamanhoDaFila();
+                Session["fila"] = tamanho;
                 return View(produtos);
+            }
+        }
+
+        public ActionResult ExecutarFila()
+        {
+            using (var proxy = new ServiceReference1.GerenciamentoDeProdutoServiceClient())
+            {
+                proxy.ExecutarFila();
+                return RedirectToAction("Index");
             }
         }
 
@@ -73,21 +84,10 @@ namespace Tp3_Azure.Client.Controllers
         {
             if (ModelState.IsValid)
             {
-                produto.ProdutoId = Guid.NewGuid();
-
-                ServiceReference1.Produto produtosr = new ServiceReference1.Produto()
-                {
-                    ProdutoId = produto.ProdutoId,
-                    Nome = produto.Nome,
-                    Categoria = produto.Categoria,
-                    Preco = produto.Preco,
-                    Quantidade = produto.Quantidade
-                };
-
-
+                
                 using (var proxy = new ServiceReference1.GerenciamentoDeProdutoServiceClient())
                 {
-                    proxy.Create(produtosr);
+                    proxy.Create(produto);
                 }
                 return RedirectToAction("Index");
             }
@@ -125,19 +125,9 @@ namespace Tp3_Azure.Client.Controllers
         {
             if (ModelState.IsValid)
             {
-                ServiceReference1.Produto produtosr = new ServiceReference1.Produto()
-                {
-                    ProdutoId = produto.ProdutoId,
-                    Nome = produto.Nome,
-                    Categoria = produto.Categoria,
-                    Preco = produto.Preco,
-                    Quantidade = produto.Quantidade
-                };
-
-
                 using (var proxy = new ServiceReference1.GerenciamentoDeProdutoServiceClient())
                 {
-                    proxy.Edit(produtosr.ProdutoId, produtosr);
+                    proxy.Edit(produto.ProdutoId, produto);
                     return RedirectToAction("Index");
                 }
                 

@@ -23,7 +23,7 @@ namespace Tp3_Azure.Domain
 
         public Produto()
         {
-            this.ProdutoId = new Guid();
+            this.ProdutoId = Guid.NewGuid();
         }
     }
 }

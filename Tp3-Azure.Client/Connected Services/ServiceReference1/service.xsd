@@ -65,4 +65,14 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="ExecutarFila">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExecutarFilaResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

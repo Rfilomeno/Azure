@@ -25,5 +25,8 @@ namespace Tp3_Azure.Service
 
         [OperationContract]
         void Delete(Guid produtoId);
+
+        [OperationContract]
+        void ExecutarFila();
     }
 }

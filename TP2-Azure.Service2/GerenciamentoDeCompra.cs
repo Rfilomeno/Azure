@@ -53,7 +53,9 @@ namespace TP2_Azure.Service2
             pedido.Produtos = p;
             PedidoDao dao = new PedidoDao();
             dao.Add(pedido);
-            CloudQueueMessage message = new CloudQueueMessage(pedido.PedidoId.ToString());
+            var json = JsonConvert.SerializeObject(pedido);
+
+            CloudQueueMessage message = new CloudQueueMessage(json);
             queue.AddMessage(message);
             return pedido.PedidoId;
         }
